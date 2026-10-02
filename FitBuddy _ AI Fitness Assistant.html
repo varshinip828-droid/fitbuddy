@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://strong-rabanadas-6c7a02.netlify.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=ee9d586c-757e-40c6-b6d1-9fea62e16ddf
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta property="og:image" content="https://strong-rabanadas-6c7a02.netlify.app/.netlify/og-image/95939629fe316aef72a01201c1a296ee.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FitBuddy is an AI-powered fitness assistant that creates personalized 7-day workout plans based on your goals, body details, and workout intensity.">
+
+    <title>FitBuddy | AI Fitness Assistant</title>
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;%F0%9F%8F%8B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #16a34a;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 8% 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: linear-gradient(135deg, #ecfdf5, #ffffff);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #16a34a;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #16a34a;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background: #15803d;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #16a34a;
+            border: 2px solid #16a34a;
+        }
+
+        .btn-outline:hover {
+            background: #ecfdf5;
+        }
+
+        .hero-card {
+            width: 350px;
+            padding: 35px;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .fitness-icon {
+            font-size: 90px;
+            margin-bottom: 15px;
+        }
+
+        .hero-card h2 {
+            margin-bottom: 10px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* WORKOUT */
+        .workout-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .day-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #16a34a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+        }
+
+        .day-card h3 {
+            color: #16a34a;
+            margin-bottom: 12px;
+        }
+
+        .day-card p {
+            margin: 7px 0;
+            color: #4b5563;
+        }
+
+        /* AI SECTION */
+        .ai-section {
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        .ai-section h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .ai-section > p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+            color: #d1d5db;
+        }
+
+        .ai-box {
+            max-width: 650px;
+            margin: 35px auto 0;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            color: #111827;
+            text-align: left;
+        }
+
+        .ai-box input,
+        .ai-box select {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .ai-box input:focus,
+        .ai-box select:focus {
+            outline: 2px solid #16a34a;
+            border-color: #16a34a;
+        }
+
+        .ai-box button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .ai-box button:hover {
+            background: #15803d;
+        }
+
+        .ai-box button:disabled {
+            background: #86efac;
+            cursor: wait;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecfdf5;
+            border-radius: 10px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        #result h3 {
+            margin-bottom: 8px;
+        }
+
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .chip {
+            background: white;
+            border: 1px solid #bbf7d0;
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: 14px;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .plan-grid .day-card {
+            padding: 15px;
+            box-shadow: none;
+        }
+
+        .plan-grid .day-card h4 {
+            color: #16a34a;
+            margin-bottom: 6px;
+        }
+
+        .plan-grid .day-card li {
+            list-style: none;
+            color: #4b5563;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .tips li {
+            margin: 6px 0 6px 20px;
+        }
+
+        .source-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid #bbf7d0;
+            border-top-color: #16a34a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ABOUT */
+        .about {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: #6b7280;
+        }
+
+        .about-box {
+            flex: 1;
+            background: #dcfce7;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .about-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+            background: #ecfdf5;
+        }
+
+        .contact p {
+            margin: 15px 0 25px;
+            color: #6b7280;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: #111827;
+            color: #d1d5db;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .features,
+            .workout-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .features,
+            .workout-container,
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .btn {
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+    <div class="logo">Fit<span>Buddy</span> 🏋️</div>
+
+    <ul>
+        <li><a href="https://strong-rabanadas-6c7a02.netlify.app/#home">Home</a></li>
+        <li><a href="https://strong-rabanadas-6c7a02.netlify.app/#features">Features</a></li>
+        <li><a href="https://strong-rabanadas-6c7a02.netlify.app/#workout">Workout</a></li>
+        <li><a href="https://strong-rabanadas-6c7a02.netlify.app/#ai">AI Assistant</a></li>
+        <li><a href="https://strong-rabanadas-6c7a02.netlify.app/#about">About</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Your Personal
+            <span>AI Fitness</span>
+            Buddy
+        </h1>
+
+        <p>
+            FitBuddy is an AI-powered fitness assistant that creates
+            personalized workout plans based on your goals, body details,
+            and workout intensity.
+        </p>
+
+        <a href="https://strong-rabanadas-6c7a02.netlify.app/#ai" class="btn">Create My Plan</a>
+        <a href="https://strong-rabanadas-6c7a02.netlify.app/#features" class="btn btn-outline">Explore Features</a>
+
+    </div>
+
+    <div class="hero-card">
+
+        <div class="fitness-icon">🏃‍♀️</div>
+
+        <h2>Train Smart</h2>
+
+        <p>
+            Personalized workouts. Better habits.
+            Stronger you.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section id="features">
+
+    <div class="section-title">
+
+        <h2>FitBuddy Features</h2>
+
+        <p>
+            Everything you need for a smarter fitness journey.
+        </p>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="icon">🤖</div>
+            <h3>AI Fitness Assistant</h3>
+            <p>
+                AI-based recommendations for personalized workout planning.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎯</div>
+            <h3>Goal Based Plans</h3>
+            <p>
+                Select your goal such as weight loss, muscle gain or fitness.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📅</div>
+            <h3>7-Day Workout</h3>
+            <p>
+                Get a structured workout plan for every day of the week.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Progress Tracking</h3>
+            <p>
+                Track your workout consistency and fitness progress.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🥗</div>
+            <h3>Healthy Lifestyle</h3>
+            <p>
+                Build healthy habits along with regular exercise.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">💡</div>
+            <h3>Fitness Tips</h3>
+            <p>
+                Receive simple tips to improve your daily fitness routine.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WORKOUT -->
+
+<section id="workout">
+
+    <div class="section-title">
+
+        <h2>Sample 7-Day Plan</h2>
+
+        <p>Example workout schedule generated by FitBuddy.</p>
+
+    </div>
+
+    <div class="workout-container">
+
+        <div class="day-card">
+            <h3>Day 1 – Chest</h3>
+            <p>🔥 Warm-up: 10 min</p>
+            <p>Push-ups: 3 × 12</p>
+            <p>Bench Press: 3 × 10</p>
+            <p>Rest: 60 sec</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 2 – Legs</h3>
+            <p>🔥 Warm-up: 10 min</p>
+            <p>Squats: 3 × 15</p>
+            <p>Lunges: 3 × 12</p>
+            <p>Rest: 60 sec</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 3 – Cardio</h3>
+            <p>🔥 Warm-up: 5 min</p>
+            <p>Running: 20 min</p>
+            <p>Jumping Jacks: 3 × 20</p>
+            <p>Cooldown: 5 min</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 4 – Back</h3>
+            <p>🔥 Warm-up: 10 min</p>
+            <p>Pull-ups: 3 × 8</p>
+            <p>Rows: 3 × 12</p>
+            <p>Rest: 60 sec</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 5 – Arms</h3>
+            <p>🔥 Warm-up: 5 min</p>
+            <p>Bicep Curls: 3 × 12</p>
+            <p>Tricep Dips: 3 × 10</p>
+            <p>Rest: 60 sec</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 6 – Full Body</h3>
+            <p>🔥 Warm-up: 10 min</p>
+            <p>Burpees: 3 × 10</p>
+            <p>Squats: 3 × 15</p>
+            <p>Plank: 3 × 30 sec</p>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 7 – Recovery</h3>
+            <p>🧘 Stretching: 15 min</p>
+            <p>Light Walk: 20 min</p>
+            <p>Foam Rolling: 10 min</p>
+            <p>Hydrate &amp; rest</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AI ASSISTANT -->
+
+<section class="ai-section" id="ai">
+
+    <h2>🤖 AI Fitness Assistant</h2>
+
+    <p>
+        Enter your details and FitBuddy will build a personalized
+        7-day workout plan for you.
+    </p>
+
+    <form class="ai-box" id="plan-form" novalidate="">
+
+        <input type="text" id="name" name="name" placeholder="Enter your name" maxlength="60" autocomplete="given-name">
+
+        <input type="number" id="age" name="age" placeholder="Enter your age" min="10" max="100">
+
+        <input type="number" id="weight" name="weight" placeholder="Weight (kg)" min="25" max="300" step="0.1">
+
+        <select id="goal" name="goal">
+            <option value="">Select Fitness Goal</option>
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="General Fitness">General Fitness</option>
+            <option value="Strength">Strength</option>
+        </select>
+
+        <select id="intensity" name="intensity">
+            <option value="">Select Workout Intensity</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+        </select>
+
+        <button type="submit" id="generate-btn">
+            Generate Workout Plan
+        </button>
+
+        <div id="result" aria-live="polite"></div>
+
+    </form>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="about">
+
+        <div class="about-text">
+
+            <h2>About FitBuddy</h2>
+
+            <p>
+                FitBuddy is designed as an AI-powered fitness companion
+                that helps users create structured workout routines.
+                The platform focuses on personalization, consistency,
+                and easy-to-follow fitness guidance.
+            </p>
+
+        </div>
+
+        <div class="about-box">
+
+            <h3>🚀 Our Vision</h3>
+
+            <p>
+                To make personalized fitness planning simple,
+                accessible and motivating for everyone through
+                Artificial Intelligence.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+    <h2>Start Your Fitness Journey</h2>
+
+    <p>
+        Train smarter. Stay consistent. Become stronger.
+    </p>
+
+    <a href="https://strong-rabanadas-6c7a02.netlify.app/#ai" class="btn">
+        Get Started
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 FitBuddy | AI Fitness Assistant
+    </p>
+
+</footer>
+
+
+<script>
+
+const form = document.getElementById("plan-form");
+const button = document.getElementById("generate-btn");
+const result = document.getElementById("result");
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+// Built-in plan used when the AI service is unavailable
+function fallbackPlan({ name, goal, intensity }) {
+
+    const sets = { Beginner: 2, Intermediate: 3, Advanced: 4 }[intensity];
+
+    const focus = {
+        "Weight Loss": "30 min cardio + HIIT + full-body exercises",
+        "Muscle Gain": "Strength training + progressive resistance exercises",
+        "Strength": "Compound exercises + strength training"
+    }[goal] || "Full-body workout + cardio + flexibility exercises";
+
+    return {
+        summary: `Here's a balanced ${intensity.toLowerCase()} week focused on ${goal.toLowerCase()}, ${name}.`,
+        focus,
+        days: [
+            { day: "Day 1", title: "Upper Body", items: ["🔥 Warm-up: 10 min", `Push-ups: ${sets} × 12`, `Rows: ${sets} × 12`, "Rest: 60 sec"] },
+            { day: "Day 2", title: "Legs", items: ["🔥 Warm-up: 10 min", `Squats: ${sets} × 15`, `Lunges: ${sets} × 12`, "Rest: 60 sec"] },
+            { day: "Day 3", title: "Cardio", items: ["🔥 Warm-up: 5 min", "Running: 20 min", `Jumping Jacks: ${sets} × 20`, "Cooldown: 5 min"] },
+            { day: "Day 4", title: "Recovery", items: ["🧘 Stretching: 15 min", "Light Walk: 20 min"] },
+            { day: "Day 5", title: "Core", items: [`Plank: ${sets} × 30 sec`, `Mountain Climbers: ${sets} × 20`, `Bicycle Crunches: ${sets} × 15`] },
+            { day: "Day 6", title: "Full Body", items: ["🔥 Warm-up: 10 min", `Burpees: ${sets} × 10`, `Squats: ${sets} × 15`, `Push-ups: ${sets} × 10`] },
+            { day: "Day 7", title: "Rest", items: ["Rest & hydrate", "Foam rolling: 10 min"] }
+        ],
+        tips: [
+            "Warm up before every session and cool down after.",
+            "Aim for 7–9 hours of sleep to support recovery.",
+            "Drink water throughout the day and eat plenty of protein and vegetables."
+        ]
+    };
+}
+
+function renderPlan(data, plan, fromAi) {
+
+    const days = plan.days.map(d => `
+        <div class="day-card">
+            <h4>${escapeHtml(d.day)} – ${escapeHtml(d.title)}</h4>
+            <ul>${(d.items || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
+        </div>
+    `).join("");
+
+    const tips = (plan.tips || []).map(t => `<li>${escapeHtml(t)}</li>`).join("");
+
+    result.style.display = "block";
+
+    result.innerHTML = `
+        <h3>Hello ${escapeHtml(data.name)}! 👋</h3>
+        <p>${escapeHtml(plan.summary || "")}</p>
+
+        <div class="result-meta">
+            <span class="chip"><strong>Age:</strong> ${escapeHtml(data.age)}</span>
+            <span class="chip"><strong>Weight:</strong> ${escapeHtml(data.weight)} kg</span>
+            <span class="chip"><strong>Goal:</strong> ${escapeHtml(data.goal)}</span>
+            <span class="chip"><strong>Intensity:</strong> ${escapeHtml(data.intensity)}</span>
+        </div>
+
+        <p>🏋️ <strong>Recommended Focus:</strong> ${escapeHtml(plan.focus || "")}</p>
+
+        <div class="plan-grid">${days}</div>
+
+        ${tips ? `<p><strong>💡 FitBuddy Tips</strong></p><ul class="tips">${tips}</ul>` : ""}
+
+        <p style="margin-top: 12px;">💚 Stay consistent and remember to warm up before exercising.</p>
+
+        ${fromAi ? "" : `<p class="source-note">Our AI coach is busy right now, so this is FitBuddy's standard plan for your goal. Try again in a moment for a fully personalized version.</p>`}
+    `;
+}
+
+form.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value.trim(),
+        age: document.getElementById("age").value,
+        weight: document.getElementById("weight").value,
+        goal: document.getElementById("goal").value,
+        intensity: document.getElementById("intensity").value
+    };
+
+    if (!data.name || !data.age || !data.weight || !data.goal || !data.intensity) {
+        result.style.display = "block";
+        result.innerHTML = "⚠️ Please fill all the details.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Building your plan…";
+    result.style.display = "block";
+    result.innerHTML = `<span class="spinner"></span>FitBuddy is creating your personalized 7-day plan…`;
+
+    try {
+        const response = await fetch("/api/plan", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (response.status === 400) {
+            result.innerHTML = `⚠️ ${escapeHtml(payload.error || "Please check your details.")}`;
+            return;
+        }
+
+        if (!response.ok || !payload.plan) {
+            throw new Error(payload.error || "Request failed");
+        }
+
+        renderPlan(data, payload.plan, true);
+
+    } catch (error) {
+        renderPlan(data, fallbackPlan(data), false);
+    } finally {
+        button.disabled = false;
+        button.textContent = "Generate Workout Plan";
+    }
+});
+
+</script>
+
+<script async="" src="./FitBuddy _ AI Fitness Assistant_files/ar" data-netlify-deploy-id="6abe88cc04a57ed978056071" data-netlify-site-id="ee9d586c-757e-40c6-b6d1-9fea62e16ddf" data-agent-runner-id="6abe884a0120b8f81b05ba53"></script>
+
+
+<script async="" src="./FitBuddy _ AI Fitness Assistant_files/hud" data-nf-variant="public" data-netlify-site-id="ee9d586c-757e-40c6-b6d1-9fea62e16ddf" data-app-host="app.netlify.com"></script>
+<iframe id="nl-badge-frame" title="Powered by Netlify" style="position: fixed; bottom: 0px; right: 0px; border: 0px; margin: 0px; padding: 0px; background: transparent; color-scheme: dark; z-index: 2147483645; width: 197px; height: 64px; clip-path: path(&quot;M 3 3 H 184 V 51 H 3 Z&quot;);" data-nl-ready="1" src="./FitBuddy _ AI Fitness Assistant_files/saved_resource.html"></iframe></body></html>
